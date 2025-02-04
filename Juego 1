@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASHYNO</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: white;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .logo-container {
+            margin-bottom: 20px;
+        }
+        .roulette-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+        }
+        .roulette {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: absolute;
+            transition: transform 3s ease-out;
+            background: conic-gradient(
+                red 0deg 30deg,
+                black 30deg 60deg,
+                red 60deg 90deg,
+                black 90deg 120deg,
+                red 120deg 150deg,
+                black 150deg 180deg,
+                red 180deg 210deg,
+                black 210deg 240deg,
+                red 240deg 270deg,
+                black 270deg 300deg,
+                red 300deg 330deg,
+                black 330deg 360deg
+            );
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background: gold;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .bet-container {
+            margin-top: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        footer {
+            margin-top: 50px;
+            background-color: #111;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            color: white;
+            text-align: center;
+        }
+        th {
+            padding: 10px;
+        }
+        a {
+            color: gold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>CASHYNO</h1>
+    <div class="logo-container">
+        <iframe src="https://drive.google.com/file/d/1y7ySjld8j_GN-TT-SBP6z1ApjEhGn5Ee/preview" width="300" height="200" allow="autoplay"></iframe>
+    </div>
+    
+    <div class="bet-container">
+        <label for="bet">Apuesta a un número (0-36):</label>
+        <input type="number" id="bet" min="0" max="36">
+    </div>
+    
+    <div class="roulette-container">
+        <div class="roulette" id="roulette"></div>
+    </div>
+    
+    <button class="button" onclick="spinRoulette()">Girar</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        const numbers = [
+            0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10,
+            5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26
+        ];
+        let isSpinning = false;
+        let lastRotation = 0;
+
+        function spinRoulette() {
+            if (isSpinning) return;
+            isSpinning = true;
+            
+            const roulette = document.getElementById("roulette");
+            const resultText = document.getElementById("result");
+            const bet = document.getElementById("bet").value;
+            
+            const randomIndex = Math.floor(Math.random() * numbers.length);
+            const winningNumber = numbers[randomIndex];
+            
+            lastRotation += 3600 + randomIndex * (360 / numbers.length);
+            roulette.style.transform = `rotate(${lastRotation}deg)`;
+            
+            setTimeout(() => {
+                resultText.textContent = `Número ganador: ${winningNumber}`;
+                
+                if (bet == winningNumber) {
+                    resultText.textContent += " ¡Has ganado!";
+                } else {
+                    resultText.textContent += " Inténtalo de nuevo.";
+                }
+                isSpinning = false;
+            }, 3000);
+        }
+    </script>
+
+    <footer>
+        <table>
+            <thead>
+                <tr>
+                    <th>Página Principal</th>
+                    <th><a href="Juego 1.html">Juego 1</a>Equipos</th>
+                    <th><a href="Juego 2.html">Juego 2</a></th>
+                    <th><a href="Juego 3.html">Juego 3</a></th>
+                </tr>
+            </thead>
+        </table>
+    </footer>
+</body>
+</html>
