@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruleta de la Suerte</title>
+<style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, black, red);
+            color: white;
+        }
+        h1 {
+            color: red;
+            font-size: 50px;
+            text-shadow: 3px 3px black;
+        }
+        .slot-machine {
+            display: flex;
+            justify-content: center;
+            margin: 20px auto;
+            padding: 20px;
+            background: #222;
+            border: 5px solid gold;
+            border-radius: 15px;
+            width: 300px;
+        }
+        .slot {
+            width: 80px;
+            height: 80px;
+            border: 3px solid gold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            margin: 5px;
+            font-size: 50px;
+            transition: transform 0.5s ease-in-out;
+        }
+        .history-table {
+            width: 50%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        .history-table th, .history-table td {
+            border: 1px solid white;
+            padding: 5px;
+        }
+        .win-glow {
+            animation: glow 1s infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 10px gold; }
+            to { box-shadow: 0 0 20px gold; }
+        }
+</style>
+</head>
+<body>
+<h1>CASHYNO</h1>
+<iframe src="https://drive.google.com/file/d/1y7ySjld8j_GN-TT-SBP6z1ApjEhGn5Ee/preview" width="300" height="200" allow="autoplay"></iframe>
+<h2>Bienvenido a la Ruleta de la Suerte<h2/>
+<h3/>¡LA SUERTE ESTÁ DE TU LADO!</h2>
+<h3>Banca: $<span id="bank">500</span></h3>
+<button onclick="withdrawMoney()">Retirar Dinero</button>
+<h2>Dinero: $<span id="money">100</span></h2>
+<button onclick="depositMoney()">Ingresar Dinero</button>
+<div class="slot-machine">
+<div class="slot" id="slot1">❓</div>
+<div class="slot" id="slot2">❓</div>
+<div class="slot" id="slot3">❓</div>
+</div>
+<button onclick="spin()">Girar ($10)</button>
+<h2>Historial de Giros</h2>
+<table class="history-table">
+<thead>
+<tr>
+<th>Resultado</th>
+<th>Ganancia/Pérdida</th>
+</tr>
+</thead>
+<tbody id="history-body">
+</tbody>
+</table>
+<script>
+        let money = 100;
+        let bank = 500;
+        const symbols = ['7️⃣', '🍀', '🏆', '🍒', '🔔', '💎', '💰'];
+        function spin() {
+            if (money < 5) {
+                alert("No tienes suficiente dinero para jugar.");
+                return;
+            }
+            money -= 10;
+            document.getElementById('money').textContent = money;
+            let result = [];
+            let rand = Math.random();
+            if (rand < 0.2) {
+                let chosen = symbols[Math.floor(Math.random() * 3)];
+                result = [chosen, chosen, chosen];
+            } else {
+                result = [
+                    symbols[Math.floor(Math.random() * symbols.length)],
+                    symbols[Math.floor(Math.random() * symbols.length)],
+                    symbols[Math.floor(Math.random() * symbols.length)]
+                ];
+            }
+            document.getElementById('slot1').style.transform = "rotateX(360deg)";
+            document.getElementById('slot2').style.transform = "rotateX(360deg)";
+            document.getElementById('slot3').style.transform = "rotateX(360deg)";
+            setTimeout(() => {
+                document.getElementById('slot1').textContent = result[0];
+                document.getElementById('slot2').textContent = result[1];
+                document.getElementById('slot3').textContent = result[2];
+                document.getElementById('slot1').style.transform = "rotateX(0deg)";
+                document.getElementById('slot2').style.transform = "rotateX(0deg)";
+                document.getElementById('slot3').style.transform = "rotateX(0deg)";
+            }, 500);
+            let winnings = 0;
+            if (result[0] === result[1] && result[1] === result[2]) {
+                if (result[0] === '7️⃣') winnings = 100;
+                else if (result[0] === '🍀') winnings = 50;
+                else if (result[0] === '🏆') winnings = 20;
+            }
+            money += winnings;
+            document.getElementById('money').textContent = money;
+            if (winnings > 0) {
+                document.querySelector('.slot-machine').classList.add('win-glow');
+                setTimeout(() => {
+                    document.querySelector('.slot-machine').classList.remove('win-glow');
+                }, 1000);
+            }
+            let historyRow = `<tr><td>${result.join(' ')}</td><td>${winnings ? '+' + winnings : '-5'}</td></tr>`;
+            document.getElementById('history-body').innerHTML += historyRow;
+        }
+        function withdrawMoney() {
+            bank += money;
+            money = 0;
+            document.getElementById('money').textContent = money;
+            document.getElementById('bank').textContent = bank;
+        }
+        function depositMoney() {
+            if (bank > 0) {
+                money += bank;
+                bank = 0;
+                document.getElementById('money').textContent = money;
+                document.getElementById('bank').textContent = bank;
+            } else {
+                alert("No hay dinero en la banca.");
+            }
+        }
+</script>
+</body>
+</html>
+tiene menú contextual
