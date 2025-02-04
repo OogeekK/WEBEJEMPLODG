@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #3d3837;
+        }
+    </style>
+    <title>Tabla Repartida</title>
+
+ <link rel="stylesheet" href="estilo.css"
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blackjack</title>
+<style> ubicación de del archivo
+</style>
+</head>
+<body>
+<header>
+<h1>CASHINO</h1>
+</header>
+  <section>
+  <p> <iframe src="https://drive.google.com/file/d/1y7ySjld8j_GN-TT-SBP6z1ApjEhGn5Ee/preview" width="300" height="200" allow="autoplay"></iframe>
+  </p>
+  </section>
+  
+  <section>
+<h2>INSTRUCCIONES DEL BLACKJACK</h2>
+<p>En esta página se presenta el conocido juego de azar, el blackjack. Presione "hit" para que el "dealer" entregue una carta, presione "stand" para terminar el tuno, por último, presione "restart" para iniciar una nueva partida. </p>
+<p>¡La suerte está de tu lado! </p>
+</section>
+  
+<div id="game">
+  <h1>Blackjack</h1>
+  <div id="table">
+    <div id="dealer-area">
+      <h2>Dealer's Cards</h2>
+      <div id="dealer-cards" class="card-container"></div>
+    </div>
+    <div id="player-area">
+      <h2>Your Cards</h2>
+      <div id="player-cards" class="card-container"></div>
+    </div>
+  </div>
+  <div id="controls">
+    <button id="hit">Hit</button>
+    <button id="stand">Stand</button>
+    <button id="restart">Restart</button>
+  </div>
+  <div id="status"></div>
+</div>
+  <footer>
+    <table>
+      <thead>
+        <tr>
+          <th>página principal</th>
+          <th>Equipos</th>
+          <th>Champions</th>
+          <th> <a href="pagina.3"/> juego3
+        </a> </th>
+      </tr>
+    </thead>
+  <tbody>
+    <tr>
+
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  background-color: #071643;
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+#game {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: 	#4768c9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+#table {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.card {
+  width: 60px;
+  height: 90px;
+  border-radius: 5px;
+  background: white;
+  color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.card.suit-Hearts::before {
+  content: '♥';
+  color: red;
+}
+
+.card.suit-Diamonds::before {
+  content: '♦';
+  color: red;
+}
+
+.card.suit-Clubs::before {
+  content: '♣';
+}
+
+.card.suit-Spades::before {
+  content: '♠';
+}
+
+#controls button {
+  margin: 5px;
+  padding: 10px 20px;
+  background: #000000;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#controls button:hover {
+  background: #4765d9;
+}
+
+#status {
+  margin-top: 20px;
+  font-size: 18px;
+}
+footer {
+            background-color: #333;
+            color: white;
+            padding: rem;
+            position: fixed;
+            bottom: 0;
+            width: 70%;
+        }
+      </style>
+      
+      <script>
+        const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
+const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+let deck = [];
+let playerHand = [];
+let dealerHand = [];
+let isGameOver = false;
+
+// Crear y barajar el mazo
+function createDeck() {
+  deck = [];
+  for (let suit of suits) {
+    for (let value of values) {
+      deck.push({ value, suit });
+    }
+  }
+  deck.sort(() => Math.random() - 0.5);
+}
+
+// Tomar una carta
+function drawCard() {
+  return deck.pop();
+}
+
+// Añadir una carta visual al área correspondiente
+function addCardToUI(card, areaId) {
+  const cardElement = document.createElement('div');
+  cardElement.classList.add('card', `suit-${card.suit}`);
+  cardElement.textContent = card.value;
+  document.getElementById(areaId).appendChild(cardElement);
+}
+
+// Calcular el valor de la mano
+function calculateHandValue(hand) {
+  let total = 0, aces = 0;
+  for (let card of hand) {
+    if (['J', 'Q', 'K'].includes(card.value)) total += 10;
+    else if (card.value === 'A') {
+      total += 11;
+      aces++;
+    } else total += parseInt(card.value);
+  }
+  while (total > 21 && aces > 0) {
+    total -= 10;
+    aces--;
+  }
+  return total;
+}
+
+// Actualizar el estado del juego
+function checkGameStatus() {
+  const playerTotal = calculateHandValue(playerHand);
+  const dealerTotal = calculateHandValue(dealerHand);
+
+  if (playerTotal > 21) endGame('You busted! Dealer wins.');
+  else if (isGameOver) {
+    if (dealerTotal > 21) endGame('Dealer busted! You win!');
+    else if (playerTotal > dealerTotal) endGame('You win!');
+    else if (playerTotal < dealerTotal) endGame('Dealer wins.');
+    else endGame('It\'s a tie!');
+  }
+}
+
+// Terminar el juego
+function endGame(message) {
+  isGameOver = true;
+  document.getElementById('status').textContent = message;
+}
+
+// Empezar un nuevo juego
+function startGame() {
+  createDeck();
+  playerHand = [];
+  dealerHand = [];
+  isGameOver = false;
+  document.getElementById('status').textContent = '';
+  document.getElementById('player-cards').innerHTML = '';
+  document.getElementById('dealer-cards').innerHTML = '';
+}
+
+// Eventos para "Hit", "Stand", y "Restart"
+document.getElementById('hit').addEventListener('click', () => {
+  if (isGameOver) return;
+  const card = drawCard();
+  playerHand.push(card);
+  addCardToUI(card, 'player-cards');
+  checkGameStatus();
+});
+
+document.getElementById('stand').addEventListener('click', () => {
+  if (isGameOver) return;
+  while (calculateHandValue(dealerHand) < 17) {
+    const card = drawCard();
+    dealerHand.push(card);
+    addCardToUI(card, 'dealer-cards');
+  }
+  isGameOver = true;
+  checkGameStatus();
+});
+
+document.getElementById('restart').addEventListener('click', startGame);
+
+// Iniciar el juego
+startGame();
+
+      </script>
