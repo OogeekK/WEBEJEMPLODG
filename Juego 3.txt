@@ -28,7 +28,7 @@
 </head>
 <body>
 <header>
-<h1>CASHINO</h1>
+<h1>CASHYNO</h1>
 </header>
   <section>
   <p> <iframe src="https://drive.google.com/file/d/1y7ySjld8j_GN-TT-SBP6z1ApjEhGn5Ee/preview" width="300" height="200" allow="autoplay"></iframe>
@@ -66,8 +66,9 @@
         <tr>
           <th>página principal</th>
           <th>Equipos</th>
-          <th>Champions</th>
-          <th> <a href="pagina.3"/> juego3
+          <th> <a href="Juego 2"/> Juego 2</th>
+</a>
+          <th> <a href="Juego 3"/> Juego3
         </a> </th>
       </tr>
     </thead>
