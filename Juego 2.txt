@@ -82,6 +82,28 @@
 <tbody id="history-body">
 </tbody>
 </table>
+  <footer>
+  <table>
+    <thead>
+      <tr>
+        <th>página principal</th>
+        <th><a href="Juego 1.html">Juego 1</a></th>
+        <th><a href="Juego 2.html">Juego 2</a></th>
+        <th><a href="Juego 3.html">Juego 3</a></th>
+      </tr>
+    </thead>
+  </table>
+</footer>
+<style>
+ footer {
+            background-color: #333;
+            color: white;
+            padding: rem;
+            position: fixed;
+            bottom: 0;
+            width: 70%;
+        }
+  </style>
 <script>
         let money = 100;
         let bank = 500;
@@ -152,4 +174,3 @@
 </script>
 </body>
 </html>
-tiene menú contextual
