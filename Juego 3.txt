@@ -65,11 +65,9 @@
       <thead>
         <tr>
           <th>página principal</th>
-          <th>Equipos</th>
-          <th> <a href="Juego 2.html"/> Juego 2</th>
-</a>
-          <th> <a href="Juego 3.html"/> Juego3
-        </a> </th>
+          <th><a href="Juego 1.html"/> Juego 1</a></th>
+          <th> <a href="Juego 2.html"/> Juego 2</th></a>
+          <th> <a href="Juego 3.html"/> Juego 1</a> </th>
       </tr>
     </thead>
   <tbody>
